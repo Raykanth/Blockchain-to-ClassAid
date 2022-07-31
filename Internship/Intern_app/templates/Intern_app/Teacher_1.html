@@ -1,0 +1,174 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'Intern_app/Teacher_New_ass_rea' %}.css"
+    />
+    <style>
+      .course .box-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .course .box-container .box {
+        border: 2px solid rgb(174, 173, 173);
+        border-radius: 10px;
+        width: 50%;
+        height: 60px;
+        position: relative;
+        margin: 10px;
+      }
+
+      .course .box-container .box a {
+        height: 100%;
+        width: 100%;
+      }
+      .course .box-container .box a p {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="course" id="course">
+      <div class="box-container">
+        <div class="box" style="width: 75%; height: 175px">
+          <a href="">wqas {{ass.Course_name}}</a><br />
+        </div>
+      </div>
+    </section>
+    <p>
+      <button class="button" data-modal="modalOne" style="float: right">
+        NEW ASSIGNMENT
+      </button>
+    </p>
+    <div id="modalOne" class="modal">
+      <div class="modal-content">
+        <div class="contact-form">
+          <!-- <a class="close">&times;</a> -->
+          <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h2 style="text-align: center">NEW ASSIGNMENT</h2>
+            <div>
+              <input
+                class="fname"
+                type="text"
+                name="ass_title"
+                placeholder="ASSIGNMENT-TITLE"
+              />
+            </div>
+            <div>
+              <textarea name="ass_instructions" rows="4"></textarea>
+            </div>
+            {{ new_ass.Assignment_content }}
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <br /><br />
+    <p>
+      <button class="button_1" datamodal="modalTwo" style="float: right">
+        NEW MATERIAL
+      </button>
+    </p>
+    <div id="modalTwo" class="modal_1">
+      <div class="modal-content">
+        <div class="contact-form">
+          <a class="close_1">&times;</a>
+          <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h2 style="text-align: center">NEW MATERIAL</h2>
+            <div>
+              <input
+                class="fname"
+                type="text"
+                name="rea_title"
+                placeholder="MATERIAL-TITLE"
+              />
+            </div>
+            <div>
+              <textarea name="rea_instructions" rows="4"></textarea>
+            </div>
+            {{ new_mat.ReadingMaterial_content }}
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <h4><p>Assignment</p></h4>
+    <section class="course" id="course">
+      <div class="box-container">
+        {% for a in ass %}
+        <div class="box">
+          <a href="{% url 'teacher_2_ass' a.id %}"
+            ><p>New Assignment: {{a.Assignment_id}}</p></a
+          ><br />
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <!-- {% for a in ass %}
+    <p>
+      <a href="{% url 'teacher_2_ass' a.id %}" id="">{{a.Assignment_id}}</a>
+    </p>
+    {% endfor %} -->
+
+    <h4><p>ReadingMaterial</p></h4>
+    {% for b in rea %}
+    <p>
+      Title : {{b.ReadingMaterial_id}}<br />
+      Instructions : {{b.ReadingMaterial_instructions}}<br />
+      Material :
+      <a href="{{b.ReadingMaterial_content}}"> ---CLICK---</a>
+    </p>
+    {% endfor %}
+    <script>
+      let modalBtns = [...document.querySelectorAll(".button")];
+      modalBtns.forEach(function (btn) {
+        btn.onclick = function () {
+          let modal = btn.getAttribute("data-modal");
+          document.getElementById(modal).style.display = "block";
+        };
+      });
+      let modalBtns_1 = [...document.querySelectorAll(".button_1")];
+      modalBtns_1.forEach(function (btn) {
+        btn.onclick = function () {
+          let modal = btn.getAttribute("datamodal");
+          document.getElementById(modal).style.display = "block";
+        };
+      });
+      // let closeBtns = [...document.querySelectorAll(".close")];
+      // closeBtns.forEach(function (btn) {
+      //   btn.onclick = function () {
+      //     let modal = btn.closest(".modal");
+      //     modal.style.display = "none";
+      //   };
+      // });
+      let closeBtns_1 = [...document.querySelectorAll(".close_1")];
+      closeBtns_1.forEach(function (btn) {
+        btn.onclick = function () {
+          let modal = btn.closest(".modal_1");
+          modal.style.display = "none";
+        };
+      });
+      window.onclick = function (event) {
+        if (event.target.className === "modal") {
+          event.target.style.display = "none";
+        }
+      };
+    </script>
+  </body>
+</html>

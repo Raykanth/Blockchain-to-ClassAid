@@ -1,0 +1,28 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="{% static 'Intern_app/Student.css' %}" />
+  </head>
+  <body>
+    <h2><p>Assignment</p></h2>
+    {% for a in ass %}
+    <p>
+      <a href="{% url 'student_2_ass' a.id %}" id="">{{a.Assignment_id}}</a>
+    </p>
+    {% endfor %}
+
+    <h2><p>ReadingMaterial</p></h2>
+    {% for b in rea %}
+    <p>
+      Title : {{b.ReadingMaterial_id}}<br />
+      Instructions : {{b.ReadingMaterial_instructions}}<br />
+      Material :
+      <a href="{{b.ReadingMaterial_content}}"> ---CLICK---</a>
+    </p>
+    <br /><br /><br />
+    {% endfor %}
+  </body>
+</html>

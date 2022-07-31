@@ -1,0 +1,39 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'Intern_app/Home.css' %}" />
+  </head>
+  <body>
+    <section class="home" id="home">
+      <h1
+        style="
+          color: rgb(255, 255, 255);
+          font-family: 'Times New Roman', Times, serif;
+        "
+      >
+        class aid
+      </h1>
+      <h2 style="color: rgb(239, 48, 80); font-size: 20px">
+        Easy way to gain knowledge
+      </h2>
+
+      <a href="{% url 'teacher-login' %}"
+        ><button class="btn">Teacher</button></a
+      >
+      <a href="{% url 'student-login' %}  "
+        ><button class="btn">Student</button></a
+      >
+    </section>
+  </body>
+</html>

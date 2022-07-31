@@ -1,0 +1,121 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html.open,
+      body.open {
+        height: 100%;
+        overflow: hidden;
+      }
+
+      html {
+        padding: 40px;
+        font-size: 62.5%;
+      }
+
+      body {
+        padding: 20px;
+        /* background: -webkit-linear-gradient(left, #25c481, #25b7c4);
+        background: linear-gradient(to right, #25c481, #25b7c4); */
+        background-image: url("https://images.squarespace-cdn.com/content/v1/58b88ec4b3db2ba5e14127bc/1575906836141-QOE4G2FNSAJI0GVYHGF4/shutterstock_1006119481.jpg?format=750w");
+        background-repeat: no-repeat;
+        background-size: cover;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        color: #fff;
+        font-size: 1.6rem;
+        font-family: "Lato", sans-serif;
+      }
+
+      p {
+        text-align: center;
+        margin: 20px 0 60px;
+      }
+
+      main {
+        background-color: #2c3845;
+      }
+
+      h1 {
+        text-align: center;
+        font-weight: 300;
+      }
+      .button {
+        display: inline-block;
+        font-size: 20px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        outline: none;
+        color: #fff;
+        background-color: #4caf50;
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 5px #999;
+      }
+
+      .button:hover {
+        background-color: #3e8e41;
+      }
+
+      .button:active {
+        background-color: #3e8e41;
+        box-shadow: 0 2px #666;
+        transform: translateY(2px);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>EVALUATION</h1>
+    <form method="post">
+      <a href="{{a.Content}}"
+        ><i class="fa fa-file-pdf-o" style="font-size: 120px; color: red"></i
+      ></a>
+      {% csrf_token %} {{m1}}
+
+      <button type="submit" class="button">SAVE</button>
+    </form>
+    <button id="b" type="">SUBMIT</button>
+    <br />
+    <form method="post">
+      <a href="{{b.Content}}"
+        ><i
+          class="fa fa-file-pdf-o"
+          style="font-size: 120px; color: red"
+        ></i></a
+      >{% csrf_token %} {{m2}}
+
+      <button type="submit" class="button">SAVE</button>
+    </form>
+    <button id="bb" type="">SUBMIT</button>
+    <br />
+    <form method="post">
+      <a href="{{c.Content}}"
+        ><i
+          class="fa fa-file-pdf-o"
+          style="font-size: 120px; color: red"
+        ></i></a
+      >{% csrf_token %} {{m3}}
+
+      <button type="submit" class="button">SAVE</button>
+    </form>
+    <button id="bbb" type="">SUBMIT</button>
+
+    <script src="{% static 'Javascript/jdx' %}.js" type="module"></script>
+  </body>
+</html>

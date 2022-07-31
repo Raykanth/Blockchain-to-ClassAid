@@ -1,0 +1,102 @@
+:root {
+  --gradient: linear-gradient(90deg, #f1c40f, #f39c12);
+}
+
+* {
+  font-family: "Open Sans", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  text-decoration: none;
+  text-transform: capitalize;
+  transition: all 0.2s linear;
+}
+*::selection {
+  background: rgb(121, 83, 83);
+  color: #211e78;
+}
+html {
+  font-size: 62.5%;
+  overflow-x: hidden;
+}
+section {
+  min-height: 100vh;
+  padding: 1rem 7%;
+  padding-top: 6rem;
+}
+.btn {
+  padding: 0.7rem 3rem;
+  font-size: 2rem;
+  color: #fff;
+  background: var(--gradient);
+  border-radius: 5rem;
+  margin-top: 1rem;
+  cursor: pointer;
+  box-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+}
+.btn::before {
+  content: "";
+  position: absolute;
+  top: -1rem;
+  left: -100%;
+  background: #fff9;
+  height: 150%;
+  width: 20%;
+  transform: rotate(25deg);
+  z-index: -1;
+}
+
+.btn:hover::before {
+  transition: 0.3s linear;
+  left: 120%;
+}
+.home {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+  background: url("https://images.unsplash.com/photo-1581078426770-6d336e5de7bf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fGVkdWNhdGlvbnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60")
+    no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  position: relative;
+  text-align: center;
+}
+.home h1 {
+  font-size: 6rem;
+  color: #666;
+}
+
+.home p {
+  font-size: 1.9rem;
+  color: #999;
+  padding: 1rem 0;
+  width: 70rem;
+}
+.home .shape {
+  position: absolute;
+  bottom: -0.2rem;
+  left: 0;
+  height: 15rem;
+  width: 100%;
+  background: url(../images/shape.png);
+  block-size: 100rem 15rem;
+  filter: drop-shadow(0 -0.1rem 0.1rem rgba(0, 0, 0, 0.2));
+  animation: animate 10s linear infinite;
+}
+
+@keyframes animate {
+  0% {
+    background-position-x: 0rem;
+  }
+
+  100% {
+    background-position-x: 100rem;
+  }
+}

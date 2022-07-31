@@ -1,0 +1,27 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="{% static 'Intern_app/Student.css' %}" />
+  </head>
+  <body>
+    <h2><p>Assignment</p></h2>
+    Title : {{ass.Assignment_id}}
+    <br /><br />
+    Instructions : {{ass.Assignment_instructions}}
+    <br /><br />
+    Assignment :<a href="{{ass.Assignment_content}}">OPEN</a> <br /><br />
+    <form action="" method="post" enctype="multipart/form-data">
+      {% csrf_token %} {{ass_form.as_p}} {% if b != "False" %}<br /><a
+        href="{{q.Submission_content}}"
+      >
+        already submitted</a
+      >{% endif %}
+      <button type="submit">Save</button>
+    </form>
+    <br /><br /><br /><br /><br />
+    <a href="{% url 'student_2_ass_correction' %}">CORRECTION</a>
+  </body>
+</html>

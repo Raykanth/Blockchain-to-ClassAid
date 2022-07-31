@@ -1,0 +1,95 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="static/Intern_app/Student.css" />
+    <link rel="stylesheet" href="{% static 'Intern_app/Teacher.css' %}" />
+    <link
+      rel="stylesheet"
+      href="{% static 'Intern_app/Teacher_New_ass_rea.css' %}"
+    />
+  </head>
+  <body>
+    <p>
+      <button class="button" data-modal="modalOne" style="float: right">
+        JOIN CLASS
+      </button>
+    </p>
+    <div id="modalOne" class="modal">
+      <div class="modal-content">
+        <div class="contact-form">
+          <a class="close">&times;</a>
+          <form method="POST">
+            {% csrf_token %}
+            <h2 style="text-align: center">Join Class</h2>
+            <div>
+              <input
+                class="fname"
+                type="text"
+                name="coursename"
+                placeholder="COURSE NAME"
+              />
+            </div>
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <section class="course" id="course">
+      <div class="box-container">
+        {% for a in COURSES %}
+
+        <div class="box">
+          <img
+            src="https://i.pinimg.com/550x/94/fb/9e/94fb9e94f0db7e3d429df2d9c64527d2.jpg "
+            alt="course image"
+          />
+          <h3 class="price"></h3>
+          <div class="content">
+            <a href="{% url 'student_1' a.id %}" class="title"
+              >{{a.Course_name}}
+            </a>
+            <div class="info">
+              <h3><i class="fas fa-book"></i> 5 materials shared</h3>
+              <h3><i class="fas fa-user-graduate"></i> {{s_id}}</h3>
+            </div>
+          </div>
+        </div>
+
+        {% endfor %}
+      </div>
+    </section>
+    <script>
+      let modalBtns = [...document.querySelectorAll(".button")];
+      modalBtns.forEach(function (btn) {
+        btn.onclick = function () {
+          let modal = btn.getAttribute("data-modal");
+          document.getElementById(modal).style.display = "block";
+        };
+      });
+      let closeBtns = [...document.querySelectorAll(".close")];
+      closeBtns.forEach(function (btn) {
+        btn.onclick = function () {
+          let modal = btn.closest(".modal");
+          modal.style.display = "none";
+        };
+      });
+      window.onclick = function (event) {
+        if (event.target.className === "modal") {
+          event.target.style.display = "none";
+        }
+      };
+    </script>
+  </body>
+</html>

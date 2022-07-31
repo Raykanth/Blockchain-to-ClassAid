@@ -1,0 +1,113 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      .course .box-container {
+        display: flex;
+        align-items: center;
+        justify-content: left;
+        flex-wrap: wrap;
+      }
+
+      .course .box-container .box {
+        width: 100px;
+        height: 100px;
+        position: relative;
+        margin: 1.5rem;
+      }
+
+      .course .box-container .box a {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+      .course .box-container .box p {
+        text-align: center;
+      }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="{% static 'Intern_app/Student.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <h2><p>Assignment</p></h2>
+    Title : {{ass.Assignment_id}}
+    <br /><br />
+    Assignment :<a href="{{ass.Assignment_content}}">OPEN</a> <br /><br />
+
+    <br /><br /><br /><br /><br />
+
+    <!-- {% for a in submissions %}{% for b in students %}
+    <div>
+      {% if a.Student_name == b.Student_name %}
+      <li>
+        {{a.Student_name}} -----
+        <a href="{{a.Submission_content}}"> Submitted</a><br />
+      </li>
+      {% else %} {% endif %}{% empty %}
+    </div>
+    {% endfor %} {% endfor %} -->
+    <section class="course" id="course">
+      <div class="box-container">
+        {% for a in submissions %}
+        <div class="box">
+          <a href="{{a.Submission_content}}">
+            <i
+              class="fa fa-file-pdf-o"
+              style="font-size: 120px; color: red"
+            ></i></a
+          ><br />
+          <p>{{a.Student_name}}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+    <br />
+
+    <!-- <div style="background-color: yellow">
+      {% for a in submissions %} {{a.Student_name}}
+      <a href="{{a.Submission_content}}">
+        <i class="fa fa-file-pdf-o" style="font-size: 120px; color: red"></i
+      ></a>
+      {% endfor %}
+    </div> -->
+    <section class="course" id="course">
+      <div class="box-container">
+        {% for a in unsub %}
+        <div class="box">
+          <a href="">
+            <i
+              class="fa fa-file-pdf-o"
+              style="font-size: 120px; color: blue"
+            ></i></a
+          ><br />
+          <p>{{a}}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <!-- <div>
+      {% for a in unsub %}
+      <li>
+        {{a}} -----
+        <a href=""> Submit</a><br />
+      </li>
+      {% endfor %}
+    </div> -->
+
+    <br /><br /><br /><br /><br />
+    <button id="connectButton">Connect</button>
+    {% if aa != "True" %}
+    <a href="{% url 'teacher_2_ass_marks' %}">DISTRIBUTE</a> {% else %}
+    <a href="">Already Distributed</a> {% endif %}
+
+    <a href="{% url 'teacher_2_ass_marks_check' %}">CHECK</a>
+    <script src="{% static 'Javascript/index' %}.js" type="module"></script>
+  </body>
+</html>
